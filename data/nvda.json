@@ -1,0 +1,24 @@
+{
+  "symbol": "NVDA",
+  "company": "NVIDIA Corp.",
+  "latestPrice": 918.27,
+  "previousClose": 903.56,
+  "open": 907.1,
+  "high": 922.85,
+  "low": 901.44,
+  "volume": 48762491,
+  "marketCap": 2264000000000,
+  "peRatio": 71.3,
+  "week52High": 974.0,
+  "week52Low": 392.3,
+  "lastUpdated": "March 18, 2026 · 3:45 PM ET",
+  "recentCloses": [
+    { "date": "2026-03-10", "close": 884.31 },
+    { "date": "2026-03-11", "close": 891.42 },
+    { "date": "2026-03-12", "close": 899.97 },
+    { "date": "2026-03-13", "close": 895.24 },
+    { "date": "2026-03-14", "close": 907.83 },
+    { "date": "2026-03-17", "close": 903.56 },
+    { "date": "2026-03-18", "close": 918.27 }
+  ]
+}

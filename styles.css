@@ -1,0 +1,344 @@
+:root {
+  --bg-1: #f5f7fb;
+  --bg-2: #dbe8ff;
+  --panel: rgba(255, 255, 255, 0.88);
+  --panel-border: rgba(15, 23, 42, 0.12);
+  --text: #0f172a;
+  --muted: #475569;
+  --up: #028a4f;
+  --down: #b42318;
+  --accent: #2563eb;
+  --accent-soft: #8ab4ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 10%, #ffffff 0%, transparent 35%),
+    radial-gradient(circle at 90% 10%, #b8d2ff 0%, transparent 28%),
+    linear-gradient(140deg, var(--bg-1), var(--bg-2));
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 6px 0;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.sub {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.tickerForm {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.tickerForm input {
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.92rem;
+  min-width: 132px;
+  background: #fff;
+  color: var(--text);
+}
+
+.tickerForm button {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(130deg, #2563eb, #0ea5e9);
+}
+
+.tickerForm button:hover {
+  filter: brightness(1.07);
+}
+
+.priceBlock {
+  text-align: right;
+}
+
+.price {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 700;
+}
+
+.change {
+  margin: 4px 0 0;
+  font-weight: 700;
+}
+
+.up {
+  color: var(--up);
+}
+
+.down {
+  color: var(--down);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+.metric strong {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.1rem;
+}
+
+.rangeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.rangeHeader p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.rangeTrack {
+  height: 14px;
+  border-radius: 999px;
+  background: #d7e4fb;
+  overflow: hidden;
+}
+
+.rangeFill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+}
+
+.rangeLabels {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+}
+
+.candleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.rangeSwitch {
+  display: flex;
+  gap: 6px;
+}
+
+.rangeBtn {
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  padding: 6px 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.rangeBtn.active {
+  background: linear-gradient(130deg, #2563eb, #0ea5e9);
+  color: #fff;
+  border-color: transparent;
+}
+
+.candleTooltip {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.candleMeta {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+}
+
+.candleScroll {
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.candleSvg {
+  width: 100%;
+  min-width: 640px;
+  height: 220px;
+  background: linear-gradient(180deg, rgba(138, 180, 255, 0.14), rgba(138, 180, 255, 0));
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 14px;
+}
+
+.candleWick {
+  stroke: #1e293b;
+  stroke-width: 1.4;
+  opacity: 0.8;
+}
+
+.candleHit {
+  fill: transparent;
+}
+
+.candleBodyUp {
+  fill: #059669;
+  animation: rise 700ms ease both;
+}
+
+.candleBodyDown {
+  fill: #dc2626;
+  animation: rise 700ms ease both;
+}
+
+.volumeBarUp {
+  fill: rgba(5, 150, 105, 0.3);
+}
+
+.volumeBarDown {
+  fill: rgba(220, 38, 38, 0.3);
+}
+
+.candleAxis {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-weight: 600;
+}
+
+@keyframes rise {
+  from {
+    transform: scaleY(0.2);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 14px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .priceBlock {
+    text-align: left;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rangeHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .candleHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rangeSwitch {
+    width: 100%;
+  }
+
+  .rangeBtn {
+    flex: 1;
+  }
+}

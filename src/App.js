@@ -2,8 +2,6 @@ import React, { useEffect, useMemo, useState } from "https://esm.sh/react@18.3.1
 import htm from "https://esm.sh/htm@3.1.1";
 
 const html = htm.bind(React.createElement);
-const RANGE_OPTIONS = [30, 60, 120];
-
 const whole = new Intl.NumberFormat("en-US", {
   notation: "compact",
   maximumFractionDigits: 2,
@@ -25,7 +23,7 @@ export default function App() {
   const [codeInput, setCodeInput] = useState("");
   const [activeCode, setActiveCode] = useState("000001.SZ");
   const [errorText, setErrorText] = useState("");
-  const [rangeDays, setRangeDays] = useState(30);
+  const [rangeDays, setRangeDays] = useState(60);
   const [hoveredCandle, setHoveredCandle] = useState(null);
 
   const money = useMemo(() => {
@@ -269,18 +267,33 @@ export default function App() {
         <div className="candleHeader">
           <h2>Candlestick</h2>
           <div className="rangeSwitch" role="group" aria-label="candle range">
-            ${RANGE_OPTIONS.map(
-              (days) => html`
-                <button
-                  key=${days}
-                  type="button"
-                  className=${days === rangeDays ? "rangeBtn active" : "rangeBtn"}
-                  onClick=${() => setRangeDays(days)}
-                >
-                  ${days}D
-                </button>
-              `
-            )}
+            <label className="rangeLabel" htmlFor="rangeInput">Days</label>
+            <input
+              id="rangeInput"
+              type="number"
+              className="rangeInput"
+              value=${rangeDays}
+              onChange=${(e) => {
+                const v = e.target.value;
+                if (v === "") {
+                  setRangeDays("");
+                  return;
+                }
+                const n = Number(v);
+                if (Number.isFinite(n)) {
+                  setRangeDays(Math.max(1, Math.min(1000, Math.round(n))));
+                }
+              }}
+              onBlur=${(e) => {
+                const n = Number(e.target.value);
+                if (!Number.isFinite(n) || n < 1) {
+                  setRangeDays(60);
+                }
+              }}
+              min="1"
+              max="1000"
+              aria-label="Candlestick chart range in days"
+            />
           </div>
         </div>
         ${candleChart

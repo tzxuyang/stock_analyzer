@@ -42,6 +42,21 @@ def row_to_dict(fields, row):
     return {fields[i]: row[i] for i in range(len(fields))}
 
 
+def normalize_ts_code(raw):
+    code = raw.strip().upper()
+    if "." in code:
+        return code
+    if not code.isdigit():
+        return code
+    if code[0] == "6":
+        return f"{code}.SH"
+    if code[0] in ("0", "2", "3"):
+        return f"{code}.SZ"
+    if code[0] in ("4", "8"):
+        return f"{code}.BJ"
+    return code
+
+
 def fetch_market_rows(ts_code, token, start_date, end_date):
     candidates = [
         ("daily", "ts_code,trade_date,open,high,low,close,pre_close,vol"),
@@ -183,7 +198,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             return
 
         query = parse.parse_qs(parsed.query)
-        ts_code = (query.get("ts_code") or ["000001.SZ"])[0].strip().upper()
+        ts_code = normalize_ts_code((query.get("ts_code") or ["000001"])[0])
 
         try:
             payload = build_stock_payload(ts_code, token)
@@ -199,7 +214,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
 
 def run():
-    port = int(os.getenv("PORT", "5173"))
+    port = int(os.getenv("PORT", "5174"))
     server = ThreadingHTTPServer(("0.0.0.0", port), DashboardHandler)
     print(f"Dashboard server running at http://localhost:{port}")
     print("API endpoint: /api/stock?ts_code=000001.SZ")

@@ -194,23 +194,38 @@ h2 {
 .rangeSwitch {
   display: flex;
   gap: 6px;
+  align-items: center;
 }
 
-.rangeBtn {
+.rangeLabel {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.rangeInput {
+  width: 72px;
+  padding: 6px 10px;
   border: 1px solid rgba(37, 99, 235, 0.25);
   border-radius: 10px;
   background: #fff;
   color: var(--text);
-  padding: 6px 10px;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.8rem;
-  cursor: pointer;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
-.rangeBtn.active {
-  background: linear-gradient(130deg, #2563eb, #0ea5e9);
-  color: #fff;
-  border-color: transparent;
+.rangeInput::-webkit-inner-spin-button,
+.rangeInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rangeInput:focus {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: -1px;
 }
 
 .candleTooltip {
@@ -338,7 +353,7 @@ h2 {
     width: 100%;
   }
 
-  .rangeBtn {
-    flex: 1;
+  .rangeInput {
+    flex: 0 0 72px;
   }
 }

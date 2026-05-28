@@ -214,7 +214,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
 
 
 def run():
-    port = int(os.getenv("PORT", "5174"))
+    port = int(os.getenv("PORT", "5173"))
     server = ThreadingHTTPServer(("0.0.0.0", port), DashboardHandler)
     print(f"Dashboard server running at http://localhost:{port}")
     print("API endpoint: /api/stock?ts_code=000001.SZ")

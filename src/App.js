@@ -82,7 +82,8 @@ export default function App() {
 
   const candleChart = useMemo(() => {
     const candles = stock?.recentCandles || [];
-    const visibleCandles = candles.slice(-rangeDays);
+    const days = Number(rangeDays) || 60;
+    const visibleCandles = candles.slice(-days);
     if (!visibleCandles.length) {
       return null;
     }
@@ -280,8 +281,8 @@ export default function App() {
                   return;
                 }
                 const n = Number(v);
-                if (Number.isFinite(n)) {
-                  setRangeDays(Math.max(1, Math.min(1000, Math.round(n))));
+                if (Number.isFinite(n) && n >= 1 && n <= 1000) {
+                  setRangeDays(Math.round(n));
                 }
               }}
               onBlur=${(e) => {

@@ -1,0 +1,5 @@
+[project]
+name = "stock-analyzer"
+version = "0.1.0"
+description = "Mobile-responsive stock dashboard with Tushare Pro data"
+requires-python = ">=3.12"

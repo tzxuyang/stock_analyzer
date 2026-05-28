@@ -11,16 +11,16 @@ This is a mobile-responsive stock dashboard using React on the frontend and a Py
 ```bash
 cd /home/yang/MyRepos/vibe_coding
 export TUSHARE_TOKEN="your_tushare_token_here"
-python3 server.py
+uv run python server.py
 ```
 
 Then open:
 
-http://localhost:5173
+http://localhost:5174
 
 The frontend calls:
 
-http://localhost:5173/api/stock?ts_code=000001.SZ
+http://localhost:5174/api/stock?ts_code=000001.SZ
 
 ## Files
 
